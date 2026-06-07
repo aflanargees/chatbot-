@@ -276,20 +276,20 @@ def home():
             db.session.add(enquiry)
             db.session.commit()
 
-            send_confirmation_email(
-                email,
-                name
-            )
+            #send_confirmation_email(
+                #email,
+                #name
+            #)
 
-            send_client_notification(
-                name,
-                phone,
-                email,
-                address,
-                category,
-                product_requirement,
+            #send_client_notification(
+                #name,
+                #phone,
+                #email,
+                #address,
+                #category,
+                #product_requirement,
                 quantity
-            )
+            #)
 
             print("Enquiry saved successfully!")
 
