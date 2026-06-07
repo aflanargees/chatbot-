@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lead Generation Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="chat-container">
+
+    <div class="bot-message">
+        👋 Welcome to our store!
+    </div>
+
+    <div class="bot-message">
+        What is your name?
+    </div>
+
+    <form method="POST">
+    <input type="text" name="name" placeholder="Enter your name" required>
+    <button type="submit">Send</button>
+    </form>
+
+{% if name %}
+<div class="bot-message">
+    Hello {{ name }}! 👋
+</div>
+
+<div class="bot-message">
+    Please enter your mobile number
+</div>
+
+<form method="POST">
+    <input type="hidden" name="name" value="{{ name }}">
+    <input type="text" name="phone" placeholder="Enter mobile number" required>
+    <button type="submit">Send</button>
+</form>
+
+{% if phone %}
+<div class="bot-message">
+    Mobile Number: {{ phone }}
+</div>
+
+
+<div class="bot-message">
+    Please enter your email address
+</div>
+
+<form method="POST">
+
+    <input type="hidden" name="name" value="{{ name }}">
+    <input type="hidden" name="phone" value="{{ phone }}">
+
+    <input type="email"
+           name="email"
+           placeholder="Enter your email"
+           required>
+
+    <button type="submit">
+        Send
+    </button>
+
+</form>
+{% endif %}
+
+{% if email %}
+<div class="bot-message">
+    Email: {{ email }}
+</div>
+
+<div class="bot-message">
+    OTP sent successfully.
+    Please enter OTP.
+</div>
+
+<form method="POST">
+
+    <input type="hidden" name="name" value="{{ name }}">
+    <input type="hidden" name="phone" value="{{ phone }}">
+    <input type="hidden" name="email" value="{{ email }}">
+
+    <input
+        type="text"
+        name="otp"
+        placeholder="Enter OTP"
+        required>
+
+    <button type="submit">
+        Verify OTP
+    </button>
+
+</form>
+
+{% if otp_verified %}
+<div class="bot-message">
+    ✅ OTP Verified Successfully!
+</div>
+{% endif %}
+
+{% endif %}
+
+
+{% if otp_verified %}
+<div class="bot-message">
+    Please enter your address
+</div>
+
+<form method="POST">
+
+    <input type="hidden" name="name" value="{{ name }}">
+    <input type="hidden" name="phone" value="{{ phone }}">
+    <input type="hidden" name="email" value="{{ email }}">
+
+    <textarea
+        name="address"
+        placeholder="Enter your address"
+        required></textarea>
+
+    <button type="submit">
+        Send
+    </button>
+
+</form>
+{% endif %}
+
+
+{% if address %}
+<div class="bot-message">
+    Address: {{ address }}
+</div>
+
+<div class="bot-message">
+    Please choose a product category
+</div>
+
+<form method="POST">
+
+    <input type="hidden" name="name" value="{{ name }}">
+    <input type="hidden" name="phone" value="{{ phone }}">
+    <input type="hidden" name="email" value="{{ email }}">
+    <input type="hidden" name="address" value="{{ address }}">
+
+    <button type="submit" name="category" value="Fragrances">
+        Fragrances
+    </button>
+
+    <button type="submit" name="category" value="Chocolates">
+        Chocolates
+    </button>
+
+</form>
+{% endif %}
+
+{% if category %}
+<div class="bot-message">
+    Selected Category: {{ category }}
+</div>
+
+<div class="bot-message">
+    Please describe the product you need
+</div>
+
+<form method="POST">
+
+    <input type="hidden" name="name" value="{{ name }}">
+    <input type="hidden" name="phone" value="{{ phone }}">
+    <input type="hidden" name="email" value="{{ email }}">
+    <input type="hidden" name="address" value="{{ address }}">
+    <input type="hidden" name="category" value="{{ category }}">
+
+    <textarea
+        name="product_requirement"
+        placeholder="Describe the product"
+        required></textarea>
+
+    <button type="submit">Send</button>
+
+</form>
+{% endif %}
+
+
+{% if product_requirement %}
+<div class="bot-message">
+    Product Requirement: {{ product_requirement }}
+</div>
+
+<div class="bot-message">
+    How many units do you need?
+</div>
+
+<form method="POST">
+
+    <input type="hidden" name="name" value="{{ name }}">
+    <input type="hidden" name="phone" value="{{ phone }}">
+    <input type="hidden" name="email" value="{{ email }}">
+    <input type="hidden" name="address" value="{{ address }}">
+    <input type="hidden" name="category" value="{{ category }}">
+    <input type="hidden" name="product_requirement" value="{{ product_requirement }}">
+
+    <input
+        type="number"
+        name="quantity"
+        placeholder="Enter quantity"
+        required>
+
+    <button type="submit">Send</button>
+
+</form>
+{% endif %}
+
+
+{% if quantity %}
+<div class="bot-message">
+    Quantity: {{ quantity }}
+</div>
+
+<div class="bot-message">
+    Any delivery instructions? (Optional)
+</div>
+
+<form method="POST">
+
+    <input type="hidden" name="name" value="{{ name }}">
+    <input type="hidden" name="phone" value="{{ phone }}">
+    <input type="hidden" name="email" value="{{ email }}">
+    <input type="hidden" name="address" value="{{ address }}">
+    <input type="hidden" name="category" value="{{ category }}">
+    <input type="hidden" name="product_requirement" value="{{ product_requirement }}">
+    <input type="hidden" name="quantity" value="{{ quantity }}">
+
+    <textarea
+        name="customer_note"
+        placeholder="Example: Deliver after 5 PM"
+        rows="3"></textarea>
+
+    <button type="submit">Submit Order</button>
+
+</form>
+{% endif %}
+
+{% if customer_note %}
+<div class="bot-message">
+    Delivery Instructions:
+    {{ customer_note }}
+</div>
+
+<div class="bot-message">
+    ✅ Thank you!
+    Your enquiry has been submitted successfully.
+</div>
+{% endif %}
+{% endif %}
+
+
+</div>
+<script>
+window.onload = function() {
+
+    var chat = document.querySelector(".chat-container");
+
+    chat.scrollTop = chat.scrollHeight;
+
+};
+</script>
+</body>
+</html>

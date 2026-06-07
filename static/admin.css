@@ -1,0 +1,35 @@
+body{
+    font-family:Arial,sans-serif;
+    background:#f5f7fb;
+    padding:30px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+th{
+    background:#2563eb;
+    color:white;
+    padding:15px;
+}
+
+td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+}
+
+tr:hover{
+    background:#f7f9fc;
+}
+
+table {
+    width: 100%;
+}
+
+.table-dark th {
+    width: auto;
+}
